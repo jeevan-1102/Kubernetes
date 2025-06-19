@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypoda
+spec:
+  containers:
+    - name: cont1
+      image: nginx
+      ports:
+        - containerPort: 80
+      env:
+        - name: env1
+          valueFrom:
+           configMapKeyRef:
+             key: name
+             name: mycm
