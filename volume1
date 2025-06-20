@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy1
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      labels:
+        app: swiggy
+    spec:
+      containers:
+        - name: contt
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo welcome to volumes; done"]
+          volumeMounts:
+            - name: myvol
+              mountPath: /tmp/jenkins
+
+        - name: contt1
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo welcome to volumes; done"]
+          volumeMounts:
+            - name: myvol
+              mountPath: /tmp/docker
+
+
+      volumes:
+        - name: myvol
+          hostPath:
+            path: /tmp/volumes
