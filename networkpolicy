@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: NetworkPolicy
+metadata:
+  name: mynp
+  namespace: dev
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
