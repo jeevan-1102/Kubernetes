@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: cont1
+      image: nginx
+      args:
+        - /bin/bash
+        - -c
+        - touch /tmp/health; sleep 1000
+      livenessProbe:
+        exec:
+          command:
+            - cat
+            - /tmp/health
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        timeoutSeconds: 30
+
